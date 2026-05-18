@@ -1,87 +1,103 @@
+# 📊 Trader Sentiment & Profitability Analysis
 
-````md
-# Trader Sentiment & Profitability Analysis
+<div align="center">
 
-A professional AI/Data Science project that analyzes the relationship between market sentiment, trader behavior, profitability, risk-taking, and leverage-style exposure.
+![Python](https://img.shields.io/badge/Python-3.11-blue?style=for-the-badge\&logo=python)
+![Machine Learning](https://img.shields.io/badge/Machine-Learning-green?style=for-the-badge)
+![Pytest](https://img.shields.io/badge/Tested%20With-Pytest-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Project-Production%20Style-success?style=for-the-badge)
 
-This project combines:
+### 🚀 Quantitative Trading • Behavioral Finance • AI Engineering • Sentiment Analytics
 
-- Quant-style analytics
-- Behavioral finance insights
-- Statistical testing
-- Machine learning
-- Risk scoring
-- Sentiment analysis
-- Production-grade software engineering workflows
-
-The project is designed to align with AI engineering and data science internship responsibilities including:
-
-- AI prototyping
-- structured JSON outputs
-- evaluation workflows
-- modular architecture
-- logging
-- testing
-- CLI tooling
-- reproducibility
+</div>
 
 ---
 
-# Project Objective
+# 📌 Project Overview
 
-The objective is to study how market sentiment influences:
+This project is a **professional AI/Data Science pipeline** designed to analyze the relationship between:
 
-- trader profitability
-- trading behavior
-- risk-taking
-- trade size
-- volatility
-- consistency
-- leverage-like exposure
+* 📈 Market Sentiment
+* 💰 Trader Profitability
+* ⚠️ Risk-Taking Behavior
+* 🧠 Behavioral Finance Patterns
+* 📊 Trade Size & Volatility
+* 🤖 Machine Learning Profitability Prediction
 
-The project merges:
+The system combines:
 
 1. Historical trading activity
-2. Fear & Greed market sentiment data
+2. Fear & Greed sentiment data
 
-to generate behavioral finance and quant-style insights.
+to generate:
 
----
-
-# Datasets
-
-## 1. historical_data.csv
-
-Contains historical trader transaction data.
-
-### Main Columns
-
-- Account
-- Coin
-- Execution Price
-- Size Tokens
-- Size USD
-- Side
-- Closed PnL
-- Fee
-- Timestamp
+* quant-style insights
+* behavioral analytics
+* trader risk scoring
+* statistical testing
+* machine learning predictions
+* automated visualizations
+* production-grade JSON reports
 
 ---
 
-## 2. fear_greed_index.csv
+# 🎯 Project Objectives
+
+The primary goal is to understand:
+
+✅ How sentiment affects trader behavior
+✅ Whether greed increases risk-taking
+✅ Whether fear reduces trade exposure
+✅ Which traders are consistently profitable
+✅ Whether profitability can be predicted using behavioral features
+
+This project was built with a strong focus on:
+
+* AI engineering workflows
+* modular architecture
+* reproducibility
+* structured outputs
+* recruiter-grade implementation
+
+---
+
+# 🗂️ Datasets Used
+
+## 1️⃣ historical_data.csv
+
+Contains trader transaction-level data.
+
+### Main Fields
+
+| Column          | Description           |
+| --------------- | --------------------- |
+| Account         | Trader wallet/account |
+| Coin            | Traded asset          |
+| Execution Price | Trade execution price |
+| Size USD        | Trade exposure        |
+| Side            | BUY/SELL direction    |
+| Closed PnL      | Realized profit/loss  |
+| Fee             | Trading fee           |
+| Timestamp       | Trade timestamp       |
+
+---
+
+## 2️⃣ fear_greed_index.csv
 
 Contains market sentiment data.
 
-### Main Columns
+### Main Fields
 
-- Date
-- Sentiment Value
-- Classification
-- Timestamp
+| Column         | Description       |
+| -------------- | ----------------- |
+| Date           | Daily timestamp   |
+| Value          | Sentiment score   |
+| Classification | Fear/Greed regime |
+| Timestamp      | Epoch timestamp   |
 
 ---
 
-# Project Structure
+# 🏗️ Project Architecture
 
 ```text
 trader-sentiment-analysis/
@@ -113,39 +129,38 @@ trader-sentiment-analysis/
 │
 ├── main.py
 ├── requirements.txt
-├── config.yaml
 ├── README.md
+├── config.yaml
 └── .gitignore
-````
+```
 
 ---
 
-# Features Implemented
+# ⚙️ Features Implemented
 
-# 1. Historical Trading Analysis
+# 1️⃣ Historical Trading Analysis
 
 Analyzes:
 
-* dataset shape
+* dataset structure
 * missing values
 * duplicates
-* PnL distribution
-* cumulative PnL
-* account-level performance
-* trade behavior
-* profitability
+* pnl distributions
+* cumulative pnl
+* account-level profitability
+* trader performance behavior
 
-Generated Outputs:
+### Generated Outputs
 
-* dataset summary JSON
-* pnl summary JSON
-* account summary CSV
-* cumulative PnL chart
-* PnL distribution chart
+✅ Dataset summary JSON
+✅ PnL summary JSON
+✅ Account-level CSV reports
+✅ PnL distribution chart
+✅ Cumulative PnL chart
 
 ---
 
-# 2. Fear & Greed Sentiment Analysis
+# 2️⃣ Fear & Greed Sentiment Analysis
 
 Analyzes:
 
@@ -154,43 +169,45 @@ Analyzes:
 * rolling sentiment behavior
 * market psychology regimes
 
-Generated Outputs:
+### Generated Outputs
 
-* sentiment summary JSON
-* sentiment distribution chart
-* sentiment trend chart
-
----
-
-# 3. Merged Behavioral Finance Analysis
-
-Merges sentiment data with trading data using date alignment.
-
-Analyzes:
-
-* sentiment vs pnl
-* sentiment vs trade size
-* sentiment vs trader behavior
-* sentiment vs risk-taking
-
-Generated Outputs:
-
-* sentiment behavior CSV
-* sentiment pnl analysis CSV
-* sentiment vs pnl chart
-* sentiment vs trade size chart
+✅ Sentiment summary JSON
+✅ Sentiment distribution chart
+✅ Sentiment trend chart
 
 ---
 
-# 4. Statistical Testing
+# 3️⃣ Behavioral Finance Analysis
 
-Implemented Tests:
+Trading data is merged with market sentiment data.
 
-* Pearson Correlation
-* Spearman Correlation
-* Welch T-Test
+### Key Questions Analyzed
 
-Relationships analyzed:
+* Does greed increase trade size?
+* Are traders more profitable during fear?
+* Does sentiment affect risk-taking?
+* Do traders behave differently in different sentiment regimes?
+
+### Generated Outputs
+
+✅ Sentiment vs PnL analysis
+✅ Sentiment vs trade size analysis
+✅ Behavioral CSV reports
+✅ Behavioral visualizations
+
+---
+
+# 4️⃣ Statistical Testing
+
+Implemented professional statistical testing:
+
+| Test                 | Purpose                              |
+| -------------------- | ------------------------------------ |
+| Pearson Correlation  | Linear relationships                 |
+| Spearman Correlation | Rank/monotonic relationships         |
+| Welch T-Test         | BUY vs SELL profitability comparison |
+
+### Relationships Studied
 
 * trade size vs pnl
 * fees vs pnl
@@ -198,27 +215,23 @@ Relationships analyzed:
 * sentiment vs trade size
 * BUY vs SELL profitability
 
-Generated Outputs:
-
-* correlation analysis JSON
-* long-short t-test JSON
-
 ---
 
-# 5. Trader Risk Scoring
+# 5️⃣ Trader Risk Scoring
 
-Created advanced trader-level metrics:
+Created advanced trader-level risk metrics.
 
-* total pnl
+### Risk Features
+
 * pnl volatility
 * average trade size
 * max trade size
-* consistency score
 * fee efficiency
+* consistency score
 * risk score
 * risk level
 
-Risk Levels:
+### Risk Levels
 
 ```text
 low
@@ -227,25 +240,25 @@ high
 extreme
 ```
 
-Generated Outputs:
+### Generated Outputs
 
-* trader risk summary CSV
-* risk level distribution chart
-* win rate vs risk chart
+✅ Trader risk summary CSV
+✅ Risk distribution chart
+✅ Win rate vs risk chart
 
 ---
 
-# 6. Machine Learning Pipeline
+# 6️⃣ Machine Learning Pipeline
 
-Built a Random Forest profitability prediction model.
+Implemented a Random Forest classifier to predict whether a trade is profitable.
 
-### Target
+## 🎯 Target
 
 ```text
 is_profitable
 ```
 
-### Features Used
+## 📌 Features Used
 
 ```text
 size_usd
@@ -254,41 +267,41 @@ hour
 sentiment value
 ```
 
-### Metrics Generated
+## 📊 Metrics Generated
 
 * Accuracy
 * Precision
 * Recall
-* F1-score
+* F1-Score
 * ROC-AUC
 
-Generated Outputs:
+### Generated Outputs
 
-* profitability model metrics JSON
-* feature importance CSV
+✅ Model evaluation JSON
+✅ Feature importance CSV
 
 ---
 
-# 7. Automated Visualization System
+# 7️⃣ Automated Visualization System
 
-The pipeline automatically generates charts and saves them inside:
+The pipeline automatically:
 
-```text
-outputs/figures/
-```
+* generates charts
+* saves figures
+* displays plots during execution
 
-Visualizations include:
+### Visualizations Included
 
-* PnL Distribution
-* Cumulative PnL
-* Sentiment Distribution
-* Sentiment Trends
-* Sentiment vs PnL
-* Sentiment vs Trade Size
-* Risk Distribution
-* Win Rate vs Risk
+📈 PnL Distribution
+📈 Cumulative PnL
+📈 Sentiment Distribution
+📈 Sentiment Trends
+📈 Sentiment vs PnL
+📈 Sentiment vs Trade Size
+📈 Risk Distribution
+📈 Win Rate vs Risk
 
-Plots are also displayed automatically during execution using:
+Plots are displayed automatically using:
 
 ```python
 plt.show()
@@ -296,23 +309,11 @@ plt.show()
 
 ---
 
-# Quick Way To View All Generated Plots
-
-Run:
-
-```powershell
-explorer outputs\figures
-```
-
-This opens all generated visualizations directly in Windows Explorer.
-
----
-
-# Testing
+# 🧪 Testing
 
 Implemented automated testing using `pytest`.
 
-### Test Files
+## Test Files
 
 ```text
 tests/test_preprocessing.py
@@ -320,21 +321,21 @@ tests/test_features.py
 tests/test_models.py
 ```
 
-### What Is Tested
+## What Is Tested
 
-* preprocessing correctness
-* feature engineering
-* dataset merging
-* risk feature creation
-* ML model output validation
+✅ preprocessing correctness
+✅ feature engineering
+✅ dataset merging
+✅ risk scoring
+✅ ML model outputs
 
-### Run Tests
+## Run Tests
 
 ```bash
 pytest
 ```
 
-Expected Output:
+### Expected Output
 
 ```text
 5 passed
@@ -342,28 +343,40 @@ Expected Output:
 
 This demonstrates:
 
-* reliability
 * reproducibility
-* engineering maturity
+* engineering reliability
 * production-style validation
+* software testing discipline
 
 ---
 
-# Installation
+# 🚀 Installation
 
-## Create Virtual Environment
+## 1️⃣ Clone Repository
+
+```bash
+git clone YOUR_REPOSITORY_LINK
+```
+
+---
+
+## 2️⃣ Create Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-## Activate Environment
+---
+
+## 3️⃣ Activate Environment
 
 ```bash
 venv\Scripts\activate
 ```
 
-## Install Dependencies
+---
+
+## 4️⃣ Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -371,7 +384,7 @@ pip install -r requirements.txt
 
 ---
 
-# How To Run
+# ▶️ How To Run
 
 ## Run Full Pipeline
 
@@ -387,7 +400,25 @@ python main.py --phase all
 
 ---
 
-# Output Files
+# 🖼️ View Generated Plots
+
+All visualizations are saved inside:
+
+```text
+outputs/figures/
+```
+
+## Quick Way To Open All Plots
+
+```powershell
+explorer outputs\figures
+```
+
+This opens all generated figures directly in Windows Explorer.
+
+---
+
+# 📁 Output Files
 
 # JSON Outputs
 
@@ -414,7 +445,7 @@ outputs/reports/feature_importance.csv
 
 ---
 
-# Generated Figures
+# 📊 Generated Figures
 
 ```text
 outputs/figures/pnl_distribution.png
@@ -429,70 +460,103 @@ outputs/figures/win_rate_vs_risk.png
 
 ---
 
-# Key Business Insights
+# ⚠️ Important Note About Datasets
 
-This project helps answer:
+The following folders are intentionally excluded from GitHub using `.gitignore`:
 
-* Are traders more profitable during fear or greed?
-* Does greed increase trade size?
-* Are high-risk traders truly profitable?
-* Do BUY and SELL trades differ statistically?
-* Does sentiment influence risk-taking?
-* Can profitability be predicted using sentiment and behavioral data?
+```text
+data/raw/
+data/processed/
+```
+
+Reason:
+
+* datasets may be large
+* datasets may contain private data
+* repositories remain lightweight
+* improves Git performance
+
+To run the project locally, place the CSV files inside:
+
+```text
+data/raw/
+```
+
+Required files:
+
+```text
+historical_data.csv
+fear_greed_index.csv
+```
 
 ---
 
-# AI Engineering Alignment
+# 📈 Key Business Insights
+
+This project helps answer:
+
+✅ Are traders more profitable during fear or greed?
+✅ Does greed increase trade size?
+✅ Are high-risk traders consistently profitable?
+✅ Does sentiment influence trading behavior?
+✅ Can profitability be predicted using sentiment data?
+
+---
+
+# 🤖 AI Engineering Alignment
 
 This project demonstrates:
 
 * modular architecture
-* clean preprocessing pipelines
+* preprocessing pipelines
 * logging systems
 * structured JSON outputs
-* ML workflows
-* evaluation pipelines
-* statistical testing
-* CLI support
-* automated reporting
+* machine learning workflows
+* statistical evaluation
+* CLI tooling
+* automated visualizations
 * testing with pytest
 * reproducible engineering workflows
 
 ---
 
-# Future Improvements
+# 🔮 Future Improvements
 
-Planned improvements include:
+Planned upgrades:
 
 * XGBoost model
 * trader clustering
 * anomaly detection
 * Streamlit dashboard
 * FastAPI backend
-* Docker support
-* PDF report generation
+* Docker deployment
+* automated PDF reports
 * RAG-based insight retrieval
 * advanced quant metrics
-* automated scheduled reporting
+* scheduled reporting system
 
 ---
 
-# Conclusion
+# 🏁 Conclusion
 
-This project is designed as a professional-grade AI and quant analytics system rather than a basic notebook-style EDA project.
+This project was designed as a **professional-grade AI & quantitative analytics system** rather than a simple notebook-style EDA project.
 
 It combines:
 
-* behavioral finance
-* quantitative analytics
-* machine learning
-* statistical validation
-* risk scoring
-* automated reporting
-* software engineering best practices
+* 📊 Quantitative Finance
+* 🧠 Behavioral Finance
+* 🤖 Machine Learning
+* 📈 Statistical Analysis
+* ⚙️ Software Engineering
+* 🧪 Automated Testing
+* 📂 Structured Reporting
 
-to create a recruiter-grade data science and AI engineering portfolio project.
+into a recruiter-grade portfolio project suitable for:
 
-```
-```
+* AI Engineering roles
+* Data Science internships
+* Quantitative Research internships
+* ML Engineering opportunities
+
+
 
