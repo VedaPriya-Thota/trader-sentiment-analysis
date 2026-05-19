@@ -28,6 +28,11 @@ from src.eda.statistical_tests import (
     long_short_ttest
 )
 
+from src.eda.quant_metrics import (
+    calculate_quant_metrics,
+    create_drawdown_series
+)
+
 from src.models.profitability_model import train_profitability_model
 
 from src.visualization.plots import (
@@ -38,7 +43,9 @@ from src.visualization.plots import (
     plot_sentiment_vs_pnl,
     plot_sentiment_vs_trade_size,
     plot_risk_level_distribution,
-    plot_win_rate_vs_risk
+    plot_win_rate_vs_risk,
+    plot_drawdown,
+    plot_correlation_heatmap
 )
 
 logging.basicConfig(
@@ -189,7 +196,34 @@ def main():
         index=False
     )
 
-    print("Full analysis + ML pipeline completed successfully.")
+    # Advanced quant metrics
+    quant_metrics = calculate_quant_metrics(merged_df)
+
+    drawdown_df = create_drawdown_series(merged_df)
+
+    save_json(
+        quant_metrics,
+        "outputs/json/quant_metrics.json"
+    )
+
+    drawdown_df.to_csv(
+        "outputs/reports/drawdown_series.csv",
+        index=False
+    )
+
+    plot_drawdown(
+        drawdown_df,
+        "outputs/figures/drawdown.png"
+    )
+
+    plot_correlation_heatmap(
+        merged_df,
+        "outputs/figures/correlation_heatmap.png"
+    )
+
+    print(
+        "Full analysis + ML + quant pipeline completed successfully."
+    )
 
 
 if __name__ == "__main__":

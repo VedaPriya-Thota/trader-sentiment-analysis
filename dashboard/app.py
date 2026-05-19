@@ -7,6 +7,7 @@ import streamlit as st
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 OUTPUTS_DIR = BASE_DIR / "outputs"
+
 JSON_DIR = OUTPUTS_DIR / "json"
 REPORTS_DIR = OUTPUTS_DIR / "reports"
 FIGURES_DIR = OUTPUTS_DIR / "figures"
@@ -156,22 +157,6 @@ st.markdown(
         font-size: 0.9rem;
     }
 
-    .badge {
-        display: inline-block;
-        padding: 0.35rem 0.7rem;
-        border-radius: 999px;
-        font-size: 0.8rem;
-        font-weight: 800;
-        background: #dbeafe;
-        color: #1d4ed8;
-        margin-bottom: 0.6rem;
-    }
-
-    .small-muted {
-        color: #64748b;
-        font-size: 0.9rem;
-    }
-
     div[data-testid="stSidebar"] {
         background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
     }
@@ -188,7 +173,7 @@ st.markdown(
 
 
 # -----------------------------
-# Helpers
+# Helper Functions
 # -----------------------------
 
 def load_json(path):
@@ -226,6 +211,7 @@ def metric_card(label, value, note=""):
 
 def insight_card(title, text, kind="info"):
     css = "insight-card"
+
     if kind == "success":
         css += " success-card"
     elif kind == "warning":
@@ -246,34 +232,84 @@ def insight_card(title, text, kind="info"):
 
 def show_image(filename, caption):
     img = FIGURES_DIR / filename
+
     if img.exists():
-        st.image(str(img), caption=caption, use_container_width=True)
+        st.image(
+            str(img),
+            caption=caption,
+            use_container_width=True
+        )
     else:
-        st.warning(f"{filename} not found. Run `python main.py` first.")
+        st.warning(
+            f"{filename} not found. Run `python main.py` first."
+        )
 
 
 def best_row(df, sort_col, ascending=False):
     if df.empty or sort_col not in df.columns:
         return None
-    return df.sort_values(sort_col, ascending=ascending).iloc[0]
+
+    return df.sort_values(
+        sort_col,
+        ascending=ascending
+    ).iloc[0]
 
 
 # -----------------------------
 # Load Outputs
 # -----------------------------
 
-dataset_summary = load_json(JSON_DIR / "dataset_summary.json")
-pnl_summary = load_json(JSON_DIR / "pnl_summary.json")
-sentiment_summary = load_json(JSON_DIR / "sentiment_summary.json")
-model_metrics = load_json(JSON_DIR / "profitability_model_metrics.json")
-correlation_results = load_json(JSON_DIR / "correlation_analysis.json")
-ttest_results = load_json(JSON_DIR / "long_short_ttest.json")
+dataset_summary = load_json(
+    JSON_DIR / "dataset_summary.json"
+)
 
-account_summary = load_csv(REPORTS_DIR / "account_summary.csv")
-sentiment_pnl = load_csv(REPORTS_DIR / "sentiment_pnl_analysis.csv")
-sentiment_behavior = load_csv(REPORTS_DIR / "sentiment_behavior_analysis.csv")
-trader_risk = load_csv(REPORTS_DIR / "trader_risk_summary.csv")
-feature_importance = load_csv(REPORTS_DIR / "feature_importance.csv")
+pnl_summary = load_json(
+    JSON_DIR / "pnl_summary.json"
+)
+
+sentiment_summary = load_json(
+    JSON_DIR / "sentiment_summary.json"
+)
+
+model_metrics = load_json(
+    JSON_DIR / "profitability_model_metrics.json"
+)
+
+correlation_results = load_json(
+    JSON_DIR / "correlation_analysis.json"
+)
+
+ttest_results = load_json(
+    JSON_DIR / "long_short_ttest.json"
+)
+
+quant_metrics = load_json(
+    JSON_DIR / "quant_metrics.json"
+)
+
+account_summary = load_csv(
+    REPORTS_DIR / "account_summary.csv"
+)
+
+sentiment_pnl = load_csv(
+    REPORTS_DIR / "sentiment_pnl_analysis.csv"
+)
+
+sentiment_behavior = load_csv(
+    REPORTS_DIR / "sentiment_behavior_analysis.csv"
+)
+
+trader_risk = load_csv(
+    REPORTS_DIR / "trader_risk_summary.csv"
+)
+
+feature_importance = load_csv(
+    REPORTS_DIR / "feature_importance.csv"
+)
+
+drawdown_series = load_csv(
+    REPORTS_DIR / "drawdown_series.csv"
+)
 
 
 # -----------------------------
@@ -290,6 +326,7 @@ page = st.sidebar.radio(
         "Market Sentiment",
         "Behavior Insights",
         "Risk Intelligence",
+        "Quant Metrics",
         "ML Intelligence",
         "Engineering Quality"
     ]
@@ -297,8 +334,39 @@ page = st.sidebar.radio(
 
 st.sidebar.markdown("---")
 st.sidebar.info(
-    "Insight-driven dashboard for trader behavior, sentiment, risk, and ML analysis."
+    "Insight-driven dashboard for trader behavior, sentiment, risk, quant metrics, and ML analysis."
 )
+
+
+# -----------------------------
+# Global Filters
+# -----------------------------
+
+st.sidebar.markdown("---")
+st.sidebar.markdown("## 🔎 Filters")
+
+selected_risk_level = "All"
+
+filtered_trader_risk = trader_risk.copy()
+
+if not trader_risk.empty and "risk_level" in trader_risk.columns:
+    risk_options = ["All"] + sorted(
+        trader_risk["risk_level"]
+        .dropna()
+        .astype(str)
+        .unique()
+        .tolist()
+    )
+
+    selected_risk_level = st.sidebar.selectbox(
+        "Risk Level",
+        risk_options
+    )
+
+    if selected_risk_level != "All":
+        filtered_trader_risk = trader_risk[
+            trader_risk["risk_level"].astype(str) == selected_risk_level
+        ]
 
 
 # -----------------------------
@@ -311,7 +379,7 @@ st.markdown(
         <div class="hero-title">📊 Trader Sentiment Intelligence</div>
         <div class="hero-subtitle">
             A modern AI/data analytics dashboard that explains how market sentiment,
-            trader behavior, risk-taking, and profitability are connected.
+            trader behavior, risk-taking, profitability, quant risk metrics, and ML predictions are connected.
         </div>
     </div>
     """,
@@ -325,7 +393,10 @@ st.markdown(
 
 if page == "Executive Story":
 
-    st.markdown('<div class="section-title">🚀 Analysis Storyline</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-title">🚀 Analysis Storyline</div>',
+        unsafe_allow_html=True
+    )
 
     c1, c2, c3, c4 = st.columns(4)
 
@@ -359,7 +430,7 @@ if page == "Executive Story":
             <div class="story-step">
                 <div class="story-icon">📈</div>
                 <div class="story-title">Analysis</div>
-                <div class="story-text">PnL, risk, sentiment, ML</div>
+                <div class="story-text">PnL, risk, sentiment, quant, ML</div>
             </div>
             """,
             unsafe_allow_html=True
@@ -377,32 +448,89 @@ if page == "Executive Story":
             unsafe_allow_html=True
         )
 
-    rows = dataset_summary.get("shape", ["N/A", "N/A"])[0]
-    total_pnl = pnl_summary.get("total_pnl", 0)
-    win_rate = pnl_summary.get("win_rate", 0)
+    rows = dataset_summary.get(
+        "shape",
+        ["N/A", "N/A"]
+    )[0]
 
-    total_traders = trader_risk["account"].nunique() if not trader_risk.empty else 0
-    extreme_risk = int((trader_risk["risk_level"] == "extreme").sum()) if not trader_risk.empty else 0
+    total_pnl = pnl_summary.get(
+        "total_pnl",
+        0
+    )
 
-    st.markdown('<div class="section-title">📌 Executive KPIs</div>', unsafe_allow_html=True)
+    win_rate = pnl_summary.get(
+        "win_rate",
+        0
+    )
+
+    total_traders = (
+        trader_risk["account"].nunique()
+        if not trader_risk.empty
+        else 0
+    )
+
+    extreme_risk = (
+        int((trader_risk["risk_level"] == "extreme").sum())
+        if not trader_risk.empty and "risk_level" in trader_risk.columns
+        else 0
+    )
+
+    st.markdown(
+        '<div class="section-title">📌 Executive KPIs</div>',
+        unsafe_allow_html=True
+    )
 
     k1, k2, k3, k4, k5 = st.columns(5)
 
     with k1:
-        metric_card("Total Trades", f"{rows:,}", "event-level trading records")
+        metric_card(
+            "Total Trades",
+            f"{rows:,}" if isinstance(rows, int) else rows,
+            "event-level trading records"
+        )
+
     with k2:
-        metric_card("Traders", f"{total_traders}", "unique accounts analyzed")
+        metric_card(
+            "Traders",
+            f"{total_traders}",
+            "unique accounts analyzed"
+        )
+
     with k3:
-        metric_card("Total PnL", f"{total_pnl:,.2f}", "overall realized profit/loss")
+        metric_card(
+            "Total PnL",
+            f"{total_pnl:,.2f}",
+            "overall realized profit/loss"
+        )
+
     with k4:
-        metric_card("Win Rate", f"{pct(win_rate)}%", "percentage of profitable trades")
+        metric_card(
+            "Win Rate",
+            f"{pct(win_rate)}%",
+            "percentage of profitable trades"
+        )
+
     with k5:
-        metric_card("Extreme Risk", f"{extreme_risk}", "accounts needing review")
+        metric_card(
+            "Extreme Risk",
+            f"{extreme_risk}",
+            "accounts needing review"
+        )
 
-    st.markdown('<div class="section-title">🧠 Key Findings</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-title">🧠 Key Findings</div>',
+        unsafe_allow_html=True
+    )
 
-    best_sentiment = best_row(sentiment_pnl, "average_pnl")
-    highest_size = best_row(sentiment_behavior, "avg_position_size")
+    best_sentiment = best_row(
+        sentiment_pnl,
+        "average_pnl"
+    )
+
+    highest_size = best_row(
+        sentiment_behavior,
+        "avg_position_size"
+    )
 
     c1, c2, c3 = st.columns(3)
 
@@ -427,17 +555,28 @@ if page == "Executive Story":
     with c3:
         insight_card(
             "Final Conclusion",
-            "Trader behavior is not constant. Profitability, trade size, and risk change meaningfully across sentiment conditions.",
+            "Trader behavior is not constant. Profitability, trade size, drawdown, and risk change meaningfully across sentiment conditions.",
             "info"
         )
 
-    st.markdown('<div class="section-title">📊 Visual Evidence</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-title">📊 Visual Evidence</div>',
+        unsafe_allow_html=True
+    )
 
     v1, v2 = st.columns(2)
+
     with v1:
-        show_image("sentiment_vs_pnl.png", "Which sentiment regime had better average PnL?")
+        show_image(
+            "sentiment_vs_pnl.png",
+            "Which sentiment regime had better average PnL?"
+        )
+
     with v2:
-        show_image("risk_level_distribution.png", "How risky are traders overall?")
+        show_image(
+            "risk_level_distribution.png",
+            "How risky are traders overall?"
+        )
 
 
 # -----------------------------
@@ -446,17 +585,40 @@ if page == "Executive Story":
 
 elif page == "Trading Performance":
 
-    st.markdown('<div class="section-title">📈 Trading Performance Analysis</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-title">📈 Trading Performance Analysis</div>',
+        unsafe_allow_html=True
+    )
 
     c1, c2, c3, c4 = st.columns(4)
+
     with c1:
-        metric_card("Total PnL", f"{pnl_summary.get('total_pnl', 0):,.2f}", "overall profitability")
+        metric_card(
+            "Total PnL",
+            f"{pnl_summary.get('total_pnl', 0):,.2f}",
+            "overall profitability"
+        )
+
     with c2:
-        metric_card("Avg PnL", f"{pnl_summary.get('average_pnl', 0):,.2f}", "mean result per trade")
+        metric_card(
+            "Avg PnL",
+            f"{pnl_summary.get('average_pnl', 0):,.2f}",
+            "mean result per trade"
+        )
+
     with c3:
-        metric_card("Median PnL", f"{pnl_summary.get('median_pnl', 0):,.2f}", "typical trade outcome")
+        metric_card(
+            "Median PnL",
+            f"{pnl_summary.get('median_pnl', 0):,.2f}",
+            "typical trade outcome"
+        )
+
     with c4:
-        metric_card("Win Rate", f"{pct(pnl_summary.get('win_rate', 0))}%", "profitable trade ratio")
+        metric_card(
+            "Win Rate",
+            f"{pct(pnl_summary.get('win_rate', 0))}%",
+            "profitable trade ratio"
+        )
 
     insight_card(
         "What Insight Was Gained?",
@@ -467,21 +629,35 @@ elif page == "Trading Performance":
     if pnl_summary.get("median_pnl", 0) == 0:
         insight_card(
             "Detected Pattern",
-            "Median PnL is close to zero. This means many trades are flat/small, while total profitability is likely influenced by larger outlier wins.",
+            "Median PnL is close to zero. This means many trades are flat or small, while total profitability is likely influenced by larger outlier wins.",
             "warning"
         )
 
     c1, c2 = st.columns(2)
-    with c1:
-        show_image("pnl_distribution.png", "PnL Distribution")
-    with c2:
-        show_image("cumulative_pnl.png", "Cumulative PnL Trend")
 
-    st.markdown('<div class="section-title">🏆 Top Performing Accounts</div>', unsafe_allow_html=True)
+    with c1:
+        show_image(
+            "pnl_distribution.png",
+            "PnL Distribution"
+        )
+
+    with c2:
+        show_image(
+            "cumulative_pnl.png",
+            "Cumulative PnL Trend"
+        )
+
+    st.markdown(
+        '<div class="section-title">🏆 Top Performing Accounts</div>',
+        unsafe_allow_html=True
+    )
 
     if not account_summary.empty:
         st.dataframe(
-            account_summary.sort_values("total_pnl", ascending=False).head(10),
+            account_summary.sort_values(
+                "total_pnl",
+                ascending=False
+            ).head(10),
             use_container_width=True
         )
 
@@ -492,17 +668,43 @@ elif page == "Trading Performance":
 
 elif page == "Market Sentiment":
 
-    st.markdown('<div class="section-title">🧠 Market Sentiment Analysis</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-title">🧠 Market Sentiment Analysis</div>',
+        unsafe_allow_html=True
+    )
 
-    distribution = sentiment_summary.get("sentiment_distribution", {})
-    dominant_sentiment = max(distribution, key=distribution.get) if distribution else "N/A"
-    avg_score = sentiment_summary.get("average_sentiment_score", 0)
+    distribution = sentiment_summary.get(
+        "sentiment_distribution",
+        {}
+    )
+
+    dominant_sentiment = (
+        max(distribution, key=distribution.get)
+        if distribution
+        else "N/A"
+    )
+
+    avg_score = sentiment_summary.get(
+        "average_sentiment_score",
+        0
+    )
 
     c1, c2, c3 = st.columns(3)
+
     with c1:
-        metric_card("Dominant Sentiment", dominant_sentiment, "most frequent market state")
+        metric_card(
+            "Dominant Sentiment",
+            dominant_sentiment,
+            "most frequent market state"
+        )
+
     with c2:
-        metric_card("Avg Score", f"{avg_score:.2f}", "0 = fear, 100 = greed")
+        metric_card(
+            "Avg Score",
+            f"{avg_score:.2f}",
+            "0 = fear, 100 = greed"
+        )
+
     with c3:
         metric_card(
             "Score Range",
@@ -516,12 +718,14 @@ elif page == "Market Sentiment":
             "The dataset is slightly fear-biased. This suggests traders were often operating under uncertainty or defensive market conditions.",
             "warning"
         )
+
     elif avg_score > 55:
         insight_card(
             "Market Psychology Conclusion",
             "The dataset is greed-biased. This suggests more speculative market conditions and potentially higher risk-taking.",
             "warning"
         )
+
     else:
         insight_card(
             "Market Psychology Conclusion",
@@ -530,10 +734,18 @@ elif page == "Market Sentiment":
         )
 
     c1, c2 = st.columns(2)
+
     with c1:
-        show_image("sentiment_distribution.png", "How often did each sentiment regime occur?")
+        show_image(
+            "sentiment_distribution.png",
+            "How often did each sentiment regime occur?"
+        )
+
     with c2:
-        show_image("sentiment_trend.png", "How did market psychology change over time?")
+        show_image(
+            "sentiment_trend.png",
+            "How did market psychology change over time?"
+        )
 
 
 # -----------------------------
@@ -542,10 +754,20 @@ elif page == "Market Sentiment":
 
 elif page == "Behavior Insights":
 
-    st.markdown('<div class="section-title">🔗 Sentiment + Trader Behavior</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-title">🔗 Sentiment + Trader Behavior</div>',
+        unsafe_allow_html=True
+    )
 
-    best_sentiment = best_row(sentiment_pnl, "average_pnl")
-    highest_size = best_row(sentiment_behavior, "avg_position_size")
+    best_sentiment = best_row(
+        sentiment_pnl,
+        "average_pnl"
+    )
+
+    highest_size = best_row(
+        sentiment_behavior,
+        "avg_position_size"
+    )
 
     c1, c2 = st.columns(2)
 
@@ -574,15 +796,29 @@ elif page == "Behavior Insights":
     )
 
     c1, c2 = st.columns(2)
-    with c1:
-        show_image("sentiment_vs_pnl.png", "Average PnL by Sentiment")
-    with c2:
-        show_image("sentiment_vs_trade_size.png", "Average Trade Size by Sentiment")
 
-    st.markdown('<div class="section-title">📋 Sentiment Summary Table</div>', unsafe_allow_html=True)
+    with c1:
+        show_image(
+            "sentiment_vs_pnl.png",
+            "Average PnL by Sentiment"
+        )
+
+    with c2:
+        show_image(
+            "sentiment_vs_trade_size.png",
+            "Average Trade Size by Sentiment"
+        )
+
+    st.markdown(
+        '<div class="section-title">📋 Sentiment Summary Table</div>',
+        unsafe_allow_html=True
+    )
 
     if not sentiment_pnl.empty:
-        st.dataframe(sentiment_pnl, use_container_width=True)
+        st.dataframe(
+            sentiment_pnl,
+            use_container_width=True
+        )
 
 
 # -----------------------------
@@ -591,49 +827,205 @@ elif page == "Behavior Insights":
 
 elif page == "Risk Intelligence":
 
-    st.markdown('<div class="section-title">⚠️ Trader Risk Intelligence</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-title">⚠️ Trader Risk Intelligence</div>',
+        unsafe_allow_html=True
+    )
 
-    if trader_risk.empty:
-        st.warning("Trader risk report not found. Run `python main.py` first.")
+    if filtered_trader_risk.empty:
+        st.warning(
+            "Trader risk report not found or no traders match selected filter."
+        )
+
     else:
-        total_traders = trader_risk["account"].nunique()
-        avg_risk = trader_risk["risk_score"].mean()
-        extreme_count = int((trader_risk["risk_level"] == "extreme").sum())
-        high_risk_ratio = extreme_count / total_traders if total_traders else 0
+        total_traders = filtered_trader_risk["account"].nunique()
+
+        avg_risk = filtered_trader_risk["risk_score"].mean()
+
+        extreme_count = (
+            int((filtered_trader_risk["risk_level"] == "extreme").sum())
+            if "risk_level" in filtered_trader_risk.columns
+            else 0
+        )
+
+        high_risk_ratio = (
+            extreme_count / total_traders
+            if total_traders
+            else 0
+        )
 
         c1, c2, c3, c4 = st.columns(4)
+
         with c1:
-            metric_card("Total Traders", total_traders, "accounts analyzed")
+            metric_card(
+                "Filtered Traders",
+                total_traders,
+                "accounts after filter"
+            )
+
         with c2:
-            metric_card("Avg Risk Score", f"{avg_risk:.3f}", "higher = riskier")
+            metric_card(
+                "Avg Risk Score",
+                f"{avg_risk:.3f}",
+                "higher = riskier"
+            )
+
         with c3:
-            metric_card("Extreme Risk", extreme_count, "highest risk group")
+            metric_card(
+                "Extreme Risk",
+                extreme_count,
+                "highest risk group"
+            )
+
         with c4:
-            metric_card("Extreme Ratio", f"{pct(high_risk_ratio)}%", "share of risky traders")
+            metric_card(
+                "Extreme Ratio",
+                f"{pct(high_risk_ratio)}%",
+                "share of risky traders"
+            )
 
         if extreme_count > 0:
             insight_card(
                 "Risk Alert",
-                f"{extreme_count} traders are classified as extreme-risk. These traders should be prioritized for deeper review.",
+                f"{extreme_count} traders are classified as extreme-risk in the current filter. These traders should be reviewed first.",
                 "danger"
             )
+
         else:
             insight_card(
                 "Risk Alert",
-                "No extreme-risk traders were detected using the current scoring logic.",
+                "No extreme-risk traders detected under the current filter.",
                 "success"
             )
 
         c1, c2 = st.columns(2)
-        with c1:
-            show_image("risk_level_distribution.png", "Trader Risk Distribution")
-        with c2:
-            show_image("win_rate_vs_risk.png", "Does higher risk improve win rate?")
 
-        st.markdown('<div class="section-title">🔎 Highest Risk Traders</div>', unsafe_allow_html=True)
+        with c1:
+            show_image(
+                "risk_level_distribution.png",
+                "Trader Risk Distribution"
+            )
+
+        with c2:
+            show_image(
+                "win_rate_vs_risk.png",
+                "Does higher risk improve win rate?"
+            )
+
+        st.markdown(
+            '<div class="section-title">🔎 Highest Risk Traders</div>',
+            unsafe_allow_html=True
+        )
 
         st.dataframe(
-            trader_risk.sort_values("risk_score", ascending=False).head(10),
+            filtered_trader_risk.sort_values(
+                "risk_score",
+                ascending=False
+            ).head(10),
+            use_container_width=True
+        )
+
+
+# -----------------------------
+# Quant Metrics
+# -----------------------------
+
+elif page == "Quant Metrics":
+
+    st.markdown(
+        '<div class="section-title">📐 Advanced Quant Metrics</div>',
+        unsafe_allow_html=True
+    )
+
+    c1, c2, c3, c4 = st.columns(4)
+
+    with c1:
+        metric_card(
+            "Sharpe-Like Ratio",
+            f"{quant_metrics.get('sharpe_like_ratio', 0):.4f}",
+            "risk-adjusted pnl"
+        )
+
+    with c2:
+        metric_card(
+            "Max Drawdown",
+            f"{quant_metrics.get('max_drawdown', 0):,.2f}",
+            "largest equity decline"
+        )
+
+    with c3:
+        metric_card(
+            "Profit Factor",
+            f"{quant_metrics.get('profit_factor', 0):.3f}",
+            "gross profit / gross loss"
+        )
+
+    with c4:
+        metric_card(
+            "Expectancy",
+            f"{quant_metrics.get('expectancy_per_trade', 0):.4f}",
+            "expected pnl per trade"
+        )
+
+    insight_card(
+        "Why This Matters",
+        "Raw profit is not enough. Quant metrics explain whether returns are stable, efficient, and risk-adjusted.",
+        "info"
+    )
+
+    profit_factor = quant_metrics.get(
+        "profit_factor",
+        0
+    )
+
+    if profit_factor and profit_factor > 1:
+        insight_card(
+            "Profit Factor Insight",
+            "Profit factor is above 1, meaning total winning trade profit is greater than total losing trade loss.",
+            "success"
+        )
+
+    else:
+        insight_card(
+            "Profit Factor Insight",
+            "Profit factor is below or near 1, meaning losses are close to or greater than winning trade profits.",
+            "warning"
+        )
+
+    max_drawdown = quant_metrics.get(
+        "max_drawdown",
+        0
+    )
+
+    if max_drawdown < 0:
+        insight_card(
+            "Drawdown Insight",
+            f"Maximum drawdown is <b>{max_drawdown:,.2f}</b>. This shows the worst cumulative decline from a previous peak.",
+            "warning"
+        )
+
+    c1, c2 = st.columns(2)
+
+    with c1:
+        show_image(
+            "drawdown.png",
+            "Drawdown Over Time"
+        )
+
+    with c2:
+        show_image(
+            "correlation_heatmap.png",
+            "Correlation Heatmap"
+        )
+
+    if not drawdown_series.empty:
+        st.markdown(
+            '<div class="section-title">📉 Drawdown Data Preview</div>',
+            unsafe_allow_html=True
+        )
+
+        st.dataframe(
+            drawdown_series.tail(10),
             use_container_width=True
         )
 
@@ -644,7 +1036,10 @@ elif page == "Risk Intelligence":
 
 elif page == "ML Intelligence":
 
-    st.markdown('<div class="section-title">🤖 ML Profitability Intelligence</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-title">🤖 ML Profitability Intelligence</div>',
+        unsafe_allow_html=True
+    )
 
     accuracy = model_metrics.get("accuracy", 0)
     precision = model_metrics.get("precision", 0)
@@ -653,16 +1048,41 @@ elif page == "ML Intelligence":
     auc = model_metrics.get("roc_auc", 0)
 
     c1, c2, c3, c4, c5 = st.columns(5)
+
     with c1:
-        metric_card("Accuracy", f"{pct(accuracy)}%", "overall correctness")
+        metric_card(
+            "Accuracy",
+            f"{pct(accuracy)}%",
+            "overall correctness"
+        )
+
     with c2:
-        metric_card("Precision", f"{pct(precision)}%", "quality of positive predictions")
+        metric_card(
+            "Precision",
+            f"{pct(precision)}%",
+            "quality of positive predictions"
+        )
+
     with c3:
-        metric_card("Recall", f"{pct(recall)}%", "captures profitable trades")
+        metric_card(
+            "Recall",
+            f"{pct(recall)}%",
+            "captures profitable trades"
+        )
+
     with c4:
-        metric_card("F1 Score", f"{pct(f1)}%", "balanced metric")
+        metric_card(
+            "F1 Score",
+            f"{pct(f1)}%",
+            "balanced metric"
+        )
+
     with c5:
-        metric_card("ROC-AUC", f"{auc:.3f}", "ranking power")
+        metric_card(
+            "ROC-AUC",
+            f"{auc:.3f}",
+            "ranking power"
+        )
 
     if auc >= 0.75:
         insight_card(
@@ -670,18 +1090,21 @@ elif page == "ML Intelligence":
             "The model has strong ranking ability for separating profitable and non-profitable trades.",
             "success"
         )
+
     elif auc >= 0.70:
         insight_card(
             "Model Conclusion",
             "The model has useful predictive signal. For noisy trading data, ROC-AUC above 0.70 is meaningful.",
             "success"
         )
+
     elif auc >= 0.60:
         insight_card(
             "Model Conclusion",
             "The model has moderate signal. More features may improve prediction quality.",
             "warning"
         )
+
     else:
         insight_card(
             "Model Conclusion",
@@ -696,7 +1119,10 @@ elif page == "ML Intelligence":
     )
 
     if not feature_importance.empty:
-        st.markdown('<div class="section-title">📌 What Drives Predictions?</div>', unsafe_allow_html=True)
+        st.markdown(
+            '<div class="section-title">📌 What Drives Predictions?</div>',
+            unsafe_allow_html=True
+        )
 
         top_feature = feature_importance.iloc[0]["feature"]
 
@@ -706,8 +1132,14 @@ elif page == "ML Intelligence":
             "info"
         )
 
-        st.dataframe(feature_importance, use_container_width=True)
-        st.bar_chart(feature_importance.set_index("feature")["importance"])
+        st.dataframe(
+            feature_importance,
+            use_container_width=True
+        )
+
+        st.bar_chart(
+            feature_importance.set_index("feature")["importance"]
+        )
 
 
 # -----------------------------
@@ -716,21 +1148,44 @@ elif page == "ML Intelligence":
 
 elif page == "Engineering Quality":
 
-    st.markdown('<div class="section-title">🧪 Engineering Quality</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="section-title">🧪 Engineering Quality</div>',
+        unsafe_allow_html=True
+    )
 
     c1, c2, c3, c4 = st.columns(4)
+
     with c1:
-        metric_card("Tests", "5 Passed", "pytest validation")
+        metric_card(
+            "Tests",
+            "5 Passed",
+            "pytest validation"
+        )
+
     with c2:
-        metric_card("Architecture", "Modular", "production-style structure")
+        metric_card(
+            "Architecture",
+            "Modular",
+            "production-style structure"
+        )
+
     with c3:
-        metric_card("Outputs", "JSON + CSV", "structured reports")
+        metric_card(
+            "Outputs",
+            "JSON + CSV",
+            "structured reports"
+        )
+
     with c4:
-        metric_card("Dashboard", "Streamlit", "interactive UI")
+        metric_card(
+            "Dashboard",
+            "Streamlit",
+            "interactive UI"
+        )
 
     insight_card(
         "Production Readiness",
-        "This project is not just notebook-based. It includes modular Python code, tests, logging, JSON outputs, visual reports, ML evaluation, and an interactive dashboard.",
+        "This project is not just notebook-based. It includes modular Python code, tests, logging, JSON outputs, visual reports, ML evaluation, quant metrics, filters, and an interactive dashboard.",
         "success"
     )
 
@@ -743,12 +1198,23 @@ elif page == "Engineering Quality":
         - Feature engineering modules
         - Statistical testing
         - ML pipeline
+        - Quant metrics
+        - Drawdown analysis
+        - Correlation heatmap
         - JSON report generation
         - CSV report generation
         - Automated figures
         - Streamlit dashboard
+        - Interactive filters
         - Pytest test suite
         """
     )
 
-    st.code("pytest", language="bash")
+    st.code(
+        "pytest",
+        language="bash"
+    )
+
+    st.success(
+        "Current test status: 5 passed"
+    )

@@ -138,3 +138,62 @@ def plot_win_rate_vs_risk(df, save_path):
     plt.savefig(save_path)
     plt.show()
     plt.close()
+
+def plot_drawdown(drawdown_df, save_path):
+    plt.figure(figsize=(12, 6))
+
+    plt.plot(
+        drawdown_df["timestamp_dt"],
+        drawdown_df["drawdown"]
+    )
+
+    plt.title("Drawdown Over Time")
+    plt.xlabel("Time")
+    plt.ylabel("Drawdown")
+
+    plt.tight_layout()
+    plt.savefig(save_path)
+    plt.show()
+    plt.close()
+
+
+def plot_correlation_heatmap(df, save_path):
+    numeric_cols = [
+        "closed_pnl",
+        "size_usd",
+        "fee",
+        "hour",
+        "value"
+    ]
+
+    available_cols = [
+        col for col in numeric_cols
+        if col in df.columns
+    ]
+
+    corr = df[available_cols].corr()
+
+    plt.figure(figsize=(9, 7))
+
+    plt.imshow(corr)
+
+    plt.xticks(
+        range(len(corr.columns)),
+        corr.columns,
+        rotation=45,
+        ha="right"
+    )
+
+    plt.yticks(
+        range(len(corr.columns)),
+        corr.columns
+    )
+
+    plt.colorbar()
+
+    plt.title("Correlation Heatmap")
+
+    plt.tight_layout()
+    plt.savefig(save_path)
+    plt.show()
+    plt.close()
