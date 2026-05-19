@@ -7,3 +7,4 @@ pydantic
 pyyaml
 python-dotenv
 pytest
+streamlit
