@@ -1,28 +1,33 @@
-# 📊 Trader Sentiment & Profitability Analysis
+# 📊 Trader Sentiment Intelligence Dashboard
 
 <div align="center">
 
 ![Python](https://img.shields.io/badge/Python-3.11-blue?style=for-the-badge\&logo=python)
-![Machine Learning](https://img.shields.io/badge/Machine-Learning-green?style=for-the-badge)
-![Pytest](https://img.shields.io/badge/Tested%20With-Pytest-orange?style=for-the-badge)
-![Status](https://img.shields.io/badge/Project-Production%20Style-success?style=for-the-badge)
+![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?style=for-the-badge\&logo=pandas)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML-orange?style=for-the-badge\&logo=scikitlearn)
+![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-ff4b4b?style=for-the-badge\&logo=streamlit)
+![Pytest](https://img.shields.io/badge/Pytest-Tested-success?style=for-the-badge\&logo=pytest)
+![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
+![Architecture](https://img.shields.io/badge/Architecture-Modular-blueviolet?style=for-the-badge)
+![Machine Learning](https://img.shields.io/badge/ML-Gradient%20Boosting-yellow?style=for-the-badge)
+![Dashboard](https://img.shields.io/badge/UI-Modern%20Analytics-purple?style=for-the-badge)
 
-### 🚀 Quantitative Trading • Behavioral Finance • AI Engineering • Sentiment Analytics
+### 🚀 AI-Powered Behavioral Finance & Trader Intelligence Platform
 
 </div>
 
 ---
 
-# 📌 Project Overview
+# 🚀 Project Overview
 
-This project is a **professional AI/Data Science pipeline** designed to analyze the relationship between:
+This project is a modern AI-powered analytics platform designed to understand how:
 
-* 📈 Market Sentiment
-* 💰 Trader Profitability
-* ⚠️ Risk-Taking Behavior
-* 🧠 Behavioral Finance Patterns
-* 📊 Trade Size & Volatility
-* 🤖 Machine Learning Profitability Prediction
+* 📈 market sentiment
+* 💰 trader profitability
+* ⚠️ risk-taking behavior
+* 🧠 behavioral finance patterns
+
+are connected.
 
 The system combines:
 
@@ -31,97 +36,220 @@ The system combines:
 
 to generate:
 
-* quant-style insights
-* behavioral analytics
+✅ trader intelligence
+✅ risk analytics
+✅ ML-powered predictions
+✅ interactive dashboards
+✅ executive-level insights
+
+---
+
+# 🎯 Core Objectives
+
+The primary goal of this project is to transform raw trading data into:
+
+* actionable insights
+* behavioral intelligence
+* profitability analytics
+* trader risk intelligence
+* AI-driven visual storytelling
+
+The dashboard was designed to ensure that even non-technical users can quickly understand:
+
+* what was analyzed
+* what patterns were discovered
+* what insights were extracted
+* what conclusions were reached
+
+---
+
+# 🧠 Key Insights Extracted
+
+The system identifies:
+
+✅ Which sentiment regime produced the best profitability
+✅ When traders became most aggressive
+✅ How market psychology affects trade behavior
+✅ Which traders are high-risk
+✅ Whether trader profitability can be predicted using ML
+✅ How sentiment impacts trade size and volatility
+
+---
+
+# ✨ Features
+
+![EDA](https://img.shields.io/badge/EDA-Implemented-0ea5e9?style=flat-square)
+![Visualization](https://img.shields.io/badge/Visualizations-Interactive-8b5cf6?style=flat-square)
+![ML Pipeline](https://img.shields.io/badge/ML-Pipeline-success?style=flat-square)
+![Risk Analysis](https://img.shields.io/badge/Risk-Scoring-red?style=flat-square)
+![Sentiment Analysis](https://img.shields.io/badge/Sentiment-Fear%20%26%20Greed-orange?style=flat-square)
+
+---
+
+# 📈 Historical Trading Analysis
+
+Implemented:
+
+* PnL analysis
+* cumulative profitability tracking
+* account-level analytics
+* profitability distribution analysis
+* win-rate analysis
+* trade-size analysis
+
+Generated outputs:
+
+✅ PnL summaries
+✅ account-level reports
+✅ cumulative PnL visualizations
+✅ profitability distributions
+
+---
+
+# 🧠 Fear & Greed Sentiment Analysis
+
+Implemented:
+
+* sentiment distribution analysis
+* sentiment timeline analysis
+* market psychology trend analysis
+* sentiment regime comparison
+
+Generated outputs:
+
+✅ sentiment trend charts
+✅ sentiment distribution charts
+✅ market psychology insights
+
+---
+
+# 🔗 Behavioral Finance Intelligence
+
+This project goes beyond traditional EDA by connecting:
+
+* trader behavior
+* profitability
+* sentiment
+* risk-taking
+
+Behavioral insights include:
+
+✅ best profitability regime
+✅ highest risk-taking regime
+✅ volatility under fear vs greed
+✅ trade-size behavior changes
+
+---
+
+# ⚠️ Trader Risk Intelligence System
+
+Implemented:
+
 * trader risk scoring
-* statistical testing
-* machine learning predictions
-* automated visualizations
-* production-grade JSON reports
+* risk-level classification
+* extreme-risk trader detection
+* risk distribution analysis
+* win-rate vs risk analysis
 
----
-
-# 🎯 Project Objectives
-
-The primary goal is to understand:
-
-✅ How sentiment affects trader behavior
-✅ Whether greed increases risk-taking
-✅ Whether fear reduces trade exposure
-✅ Which traders are consistently profitable
-✅ Whether profitability can be predicted using behavioral features
-
-This project was built with a strong focus on:
-
-* AI engineering workflows
-* modular architecture
-* reproducibility
-* structured outputs
-
-
----
-
-# 🗂️ Datasets Used
-
-## 1️⃣ historical_data.csv
-
-Contains trader transaction-level data.
-
-### Main Fields
-
-| Column          | Description           |
-| --------------- | --------------------- |
-| Account         | Trader wallet/account |
-| Coin            | Traded asset          |
-| Execution Price | Trade execution price |
-| Size USD        | Trade exposure        |
-| Side            | BUY/SELL direction    |
-| Closed PnL      | Realized profit/loss  |
-| Fee             | Trading fee           |
-| Timestamp       | Trade timestamp       |
-
----
-
-## 2️⃣ fear_greed_index.csv
-
-Contains market sentiment data.
-
-### Main Fields
-
-| Column         | Description       |
-| -------------- | ----------------- |
-| Date           | Daily timestamp   |
-| Value          | Sentiment score   |
-| Classification | Fear/Greed regime |
-| Timestamp      | Epoch timestamp   |
-
----
-# 📥 Dataset Access
-
-The datasets are not uploaded to GitHub because:
-
-- file sizes may be large
-- repositories should remain lightweight
-- raw datasets may contain external/private data
-
-You can download the datasets here:
-
-## Google Drive Link
-
-https://drive.google.com/file/d/1IAfLZwu6rJzyWKgBToqwSmmVYU6VbjVs/view?usp=sharing
-https://drive.google.com/file/d/1PgQC0tO8XN-wqkNyghWc_-mnrYv_nhSf/view?usp=sharing
-
-After downloading, place the CSV files inside:
+Risk levels:
 
 ```text
-data/raw/
+low
+medium
+high
+extreme
+```
+
+---
+
+# 🤖 Machine Learning Intelligence
+
+![Gradient Boosting](https://img.shields.io/badge/Gradient%20Boosting-Implemented-success?style=flat-square)
+![Random Forest](https://img.shields.io/badge/Random%20Forest-Implemented-success?style=flat-square)
+![ROC-AUC](https://img.shields.io/badge/ROC--AUC-0.73-important?style=flat-square)
+![Feature Importance](https://img.shields.io/badge/Feature-Importance-yellow?style=flat-square)
+
+---
+
+Implemented ML models:
+
+* RandomForestClassifier
+* GradientBoostingClassifier
+
+Model capabilities:
+
+✅ profitability prediction
+✅ feature importance analysis
+✅ precision/recall/F1 evaluation
+✅ ROC-AUC analysis
+
+---
+
+# 🧠 Important ML Engineering Insight
+
+During development, target leakage was identified from PnL-derived features.
+
+The leakage was removed to ensure:
+
+✅ realistic evaluation
+✅ proper ML integrity
+✅ trustworthy metrics
+
+This significantly improved the reliability of the ML pipeline.
+
+---
+
+# 📊 Interactive Dashboard
+
+![Executive Dashboard](https://img.shields.io/badge/Executive-Insights-blue?style=flat-square)
+![Behavior Analytics](https://img.shields.io/badge/Behavior-Analysis-success?style=flat-square)
+![Risk Intelligence](https://img.shields.io/badge/Risk-Intelligence-red?style=flat-square)
+![Interactive UI](https://img.shields.io/badge/UI-Interactive-purple?style=flat-square)
+
+---
+
+The dashboard was redesigned into a modern AI SaaS-style analytics experience.
+
+### Dashboard Features
+
+✅ Executive KPI cards
+✅ Visual storytelling layout
+✅ AI-style insight cards
+✅ Risk intelligence panels
+✅ ML explanation panels
+✅ Behavioral finance insights
+✅ Interactive visual analytics
+✅ Modern responsive UI
+
+---
+
+# 🧪 Engineering Quality
+
+![Tests](https://img.shields.io/badge/Tests-5%20Passed-success?style=flat-square)
+![Code Structure](https://img.shields.io/badge/Structure-Production%20Style-blue?style=flat-square)
+![Outputs](https://img.shields.io/badge/Outputs-JSON%20%7C%20CSV%20%7C%20Plots-informational?style=flat-square)
+
+---
+
+Implemented engineering practices:
+
+✅ modular architecture
+✅ reusable preprocessing pipeline
+✅ automated testing with pytest
+✅ structured JSON outputs
+✅ CSV report generation
+✅ automated visualization generation
+✅ interactive dashboard integration
+
+---
 
 # 🏗️ Project Architecture
 
 ```text
 trader-sentiment-analysis/
 │
-├── assets/
+├── dashboard/
+│   └── app.py
 │
 ├── data/
 │   ├── raw/
@@ -129,16 +257,16 @@ trader-sentiment-analysis/
 │
 ├── outputs/
 │   ├── figures/
-│   ├── reports/
-│   └── json/
+│   ├── json/
+│   └── reports/
 │
 ├── src/
-│   ├── preprocessing/
 │   ├── eda/
 │   ├── features/
 │   ├── models/
-│   ├── visualization/
-│   └── utils/
+│   ├── preprocessing/
+│   ├── utils/
+│   └── visualization/
 │
 ├── tests/
 │   ├── conftest.py
@@ -149,353 +277,43 @@ trader-sentiment-analysis/
 ├── main.py
 ├── requirements.txt
 ├── README.md
-├── config.yaml
 └── .gitignore
 ```
 
 ---
 
-# ⚙️ Features Implemented
+# ⚙️ Tech Stack
 
-# 1️⃣ Historical Trading Analysis
+## Core Technologies
 
-Analyzes:
-
-* dataset structure
-* missing values
-* duplicates
-* pnl distributions
-* cumulative pnl
-* account-level profitability
-* trader performance behavior
-
-### Generated Outputs
-
-✅ Dataset summary JSON
-✅ PnL summary JSON
-✅ Account-level CSV reports
-✅ PnL distribution chart
-✅ Cumulative PnL chart
+* Python
+* Pandas
+* NumPy
+* Matplotlib
+* Scikit-learn
+* Streamlit
+* Pytest
 
 ---
 
-# 2️⃣ Fear & Greed Sentiment Analysis
+# 📂 Dataset Information
 
-Analyzes:
+The project uses:
 
-* sentiment distribution
-* sentiment trends
-* rolling sentiment behavior
-* market psychology regimes
-
-### Generated Outputs
-
-✅ Sentiment summary JSON
-✅ Sentiment distribution chart
-✅ Sentiment trend chart
+1. Historical Trading Dataset
+2. Fear & Greed Sentiment Dataset
 
 ---
 
-# 3️⃣ Behavioral Finance Analysis
+# 📥 Dataset Access
 
-Trading data is merged with market sentiment data.
+Datasets are not uploaded to GitHub because:
 
-### Key Questions Analyzed
-
-* Does greed increase trade size?
-* Are traders more profitable during fear?
-* Does sentiment affect risk-taking?
-* Do traders behave differently in different sentiment regimes?
-
-### Generated Outputs
-
-✅ Sentiment vs PnL analysis
-✅ Sentiment vs trade size analysis
-✅ Behavioral CSV reports
-✅ Behavioral visualizations
-
----
-
-# 4️⃣ Statistical Testing
-
-Implemented professional statistical testing:
-
-| Test                 | Purpose                              |
-| -------------------- | ------------------------------------ |
-| Pearson Correlation  | Linear relationships                 |
-| Spearman Correlation | Rank/monotonic relationships         |
-| Welch T-Test         | BUY vs SELL profitability comparison |
-
-### Relationships Studied
-
-* trade size vs pnl
-* fees vs pnl
-* sentiment vs pnl
-* sentiment vs trade size
-* BUY vs SELL profitability
-
----
-
-# 5️⃣ Trader Risk Scoring
-
-Created advanced trader-level risk metrics.
-
-### Risk Features
-
-* pnl volatility
-* average trade size
-* max trade size
-* fee efficiency
-* consistency score
-* risk score
-* risk level
-
-### Risk Levels
-
-```text
-low
-medium
-high
-extreme
-```
-
-### Generated Outputs
-
-✅ Trader risk summary CSV
-✅ Risk distribution chart
-✅ Win rate vs risk chart
-
----
-
-# 6️⃣ Machine Learning Pipeline
-
-Implemented a Random Forest classifier to predict whether a trade is profitable.
-
-## 🎯 Target
-
-```text
-is_profitable
-```
-
-## 📌 Features Used
-
-```text
-size_usd
-fee
-hour
-sentiment value
-```
-
-## 📊 Metrics Generated
-
-* Accuracy
-* Precision
-* Recall
-* F1-Score
-* ROC-AUC
-
-### Generated Outputs
-
-✅ Model evaluation JSON
-✅ Feature importance CSV
-
----
-
-# 7️⃣ Automated Visualization System
-
-The pipeline automatically:
-
-* generates charts
-* saves figures
-* displays plots during execution
-
-### Visualizations Included
-
-📈 PnL Distribution
-📈 Cumulative PnL
-📈 Sentiment Distribution
-📈 Sentiment Trends
-📈 Sentiment vs PnL
-📈 Sentiment vs Trade Size
-📈 Risk Distribution
-📈 Win Rate vs Risk
-
-Plots are displayed automatically using:
-
-```python
-plt.show()
-```
-
----
-
-# 🧪 Testing
-
-Implemented automated testing using `pytest`.
-
-## Test Files
-
-```text
-tests/test_preprocessing.py
-tests/test_features.py
-tests/test_models.py
-```
-
-## What Is Tested
-
-✅ preprocessing correctness
-✅ feature engineering
-✅ dataset merging
-✅ risk scoring
-✅ ML model outputs
-
-## Run Tests
-
-```bash
-pytest
-```
-
-### Expected Output
-
-```text
-5 passed
-```
-
-This demonstrates:
-
-* reproducibility
-* engineering reliability
-* production-style validation
-* software testing discipline
-
----
-
-# 🚀 Installation
-
-## 1️⃣ Clone Repository
-
-```bash
-git clone YOUR_REPOSITORY_LINK
-```
-
----
-
-## 2️⃣ Create Virtual Environment
-
-```bash
-python -m venv venv
-```
-
----
-
-## 3️⃣ Activate Environment
-
-```bash
-venv\Scripts\activate
-```
-
----
-
-## 4️⃣ Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-# ▶️ How To Run
-
-## Run Full Pipeline
-
-```bash
-python main.py
-```
-
-## Run Using CLI
-
-```bash
-python main.py --phase all
-```
-
----
-
-# 🖼️ View Generated Plots
-
-All visualizations are saved inside:
-
-```text
-outputs/figures/
-```
-
-## Quick Way To Open All Plots
-
-```powershell
-explorer outputs\figures
-```
-
-This opens all generated figures directly in Windows Explorer.
-
----
-
-# 📁 Output Files
-
-# JSON Outputs
-
-```text
-outputs/json/dataset_summary.json
-outputs/json/pnl_summary.json
-outputs/json/sentiment_summary.json
-outputs/json/correlation_analysis.json
-outputs/json/long_short_ttest.json
-outputs/json/profitability_model_metrics.json
-```
-
----
-
-# CSV Reports
-
-```text
-outputs/reports/account_summary.csv
-outputs/reports/sentiment_pnl_analysis.csv
-outputs/reports/sentiment_behavior_analysis.csv
-outputs/reports/trader_risk_summary.csv
-outputs/reports/feature_importance.csv
-```
-
----
-
-# 📊 Generated Figures
-
-```text
-outputs/figures/pnl_distribution.png
-outputs/figures/cumulative_pnl.png
-outputs/figures/sentiment_distribution.png
-outputs/figures/sentiment_trend.png
-outputs/figures/sentiment_vs_pnl.png
-outputs/figures/sentiment_vs_trade_size.png
-outputs/figures/risk_level_distribution.png
-outputs/figures/win_rate_vs_risk.png
-```
-
----
-
-# ⚠️ Important Note About Datasets
-
-The following folders are intentionally excluded from GitHub using `.gitignore`:
-
-```text
-data/raw/
-data/processed/
-```
-
-Reason:
-
+* repositories should remain lightweight
 * datasets may be large
-* datasets may contain private data
-* repositories remain lightweight
-* improves Git performance
+* raw data may contain external/private information
 
-To run the project locally, place the CSV files inside:
+Place datasets inside:
 
 ```text
 data/raw/
@@ -510,65 +328,268 @@ fear_greed_index.csv
 
 ---
 
-# 📈 Key Business Insights
+# 🔗 Dataset Download Link
 
-This project helps answer:
+Add your dataset link here:
 
-✅ Are traders more profitable during fear or greed?
-✅ Does greed increase trade size?
-✅ Are high-risk traders consistently profitable?
-✅ Does sentiment influence trading behavior?
-✅ Can profitability be predicted using sentiment data?
-
----
-
-# 🤖 AI Engineering Alignment
-
-This project demonstrates:
-
-* modular architecture
-* preprocessing pipelines
-* logging systems
-* structured JSON outputs
-* machine learning workflows
-* statistical evaluation
-* CLI tooling
-* automated visualizations
-* testing with pytest
-* reproducible engineering workflows
+```text
+https://drive.google.com/file/d/1IAfLZwu6rJzyWKgBToqwSmmVYU6VbjVs/view?usp=drive_link
+https://drive.google.com/file/d/1PgQC0tO8XN-wqkNyghWc_-mnrYv_nhSf/view?usp=drive_link
+```
 
 ---
 
-# 🔮 Future Improvements
+# 🚀 Installation & Setup
 
-Planned upgrades:
+## 1️⃣ Clone Repository
 
-* XGBoost model
-* trader clustering
+```bash
+git clone <YOUR_REPOSITORY_LINK>
+cd trader-sentiment-analysis
+```
+
+---
+
+## 2️⃣ Create Virtual Environment
+
+### Windows
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+### Linux / Mac
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+---
+
+## 3️⃣ Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# ▶️ Run Complete Analysis Pipeline
+
+```bash
+python main.py
+```
+
+The pipeline automatically generates:
+
+✅ JSON reports
+✅ CSV reports
+✅ visualizations
+✅ ML outputs
+✅ trader risk analytics
+✅ feature importance reports
+
+---
+
+# 📊 Run Interactive Dashboard
+
+```bash
+streamlit run dashboard/app.py
+```
+
+---
+
+# 👀 Quick Way to View All Generated Plots
+
+```bash
+explorer outputs\figures
+```
+
+---
+
+# 📈 Generated Outputs
+
+## 📂 JSON Reports
+
+Located in:
+
+```text
+outputs/json/
+```
+
+Includes:
+
+* dataset summary
+* pnl summary
+* sentiment summary
+* correlation analysis
+* ML metrics
+
+---
+
+## 📂 CSV Reports
+
+Located in:
+
+```text
+outputs/reports/
+```
+
+Includes:
+
+* account summary
+* sentiment analysis reports
+* trader risk reports
+* feature importance reports
+
+---
+
+## 📂 Visualizations
+
+Located in:
+
+```text
+outputs/figures/
+```
+
+Generated charts:
+
+* PnL Distribution
+* Cumulative PnL
+* Sentiment Distribution
+* Sentiment Trend
+* Sentiment vs PnL
+* Sentiment vs Trade Size
+* Risk Distribution
+* Win Rate vs Risk
+
+---
+
+# 📊 Dashboard Storytelling Flow
+
+The dashboard follows a structured analytics narrative:
+
+```text
+Raw Trading Data
+        ↓
+Data Cleaning & Processing
+        ↓
+Feature Engineering
+        ↓
+Behavior Analysis
+        ↓
+Risk Intelligence
+        ↓
+Machine Learning
+        ↓
+Executive Insights
+```
+
+---
+
+# 🧪 Run Tests
+
+```bash
+pytest
+```
+
+Expected output:
+
+```text
+5 passed
+```
+
+---
+
+# 📸 Dashboard Preview
+
+Add screenshots here:
+
+```text
+dashboard_preview_1.png
+dashboard_preview_2.png
+dashboard_preview_3.png
+```
+
+---
+
+# 🚀 Future Enhancements
+
+## AI & ML
+
+* XGBoost / LightGBM
+* LSTM time-series forecasting
 * anomaly detection
-* Streamlit dashboard
-* FastAPI backend
-* Docker deployment
-* automated PDF reports
-* RAG-based insight retrieval
-* advanced quant metrics
-* scheduled reporting system
+* reinforcement learning analytics
 
 ---
 
-# 🏁 Conclusion
+## Dashboard
 
-This project was designed as a **professional-grade AI & quantitative analytics system** rather than a simple notebook-style EDA project.
+* real-time market integration
+* advanced drill-down analytics
+* live crypto dashboards
+* interactive filtering
 
-It combines:
+---
 
-* 📊 Quantitative Finance
-* 🧠 Behavioral Finance
-* 🤖 Machine Learning
-* 📈 Statistical Analysis
-* ⚙️ Software Engineering
-* 🧪 Automated Testing
-* 📂 Structured Reporting
+## Quant Analytics
+
+* Sharpe ratio
+* drawdown analysis
+* volatility clustering
+* portfolio analytics
+
+---
+
+## Production Features
+
+* Docker deployment
+* FastAPI backend
+* CI/CD pipelines
+* cloud deployment
+
+---
+
+## AI Features
+
+* AI-generated trading insights
+* GPT-powered explanations
+* automated report summarization
+
+---
+
+# 📌 Business Value
+
+This project demonstrates how AI-powered analytics can help:
+
+✅ identify risky traders
+✅ understand market psychology
+✅ detect behavioral patterns
+✅ improve decision-making
+✅ generate actionable trading intelligence
+
+
+# ⭐ Final Note
+
+This project evolved from a simple data analysis assignment into a complete:
+
+✅ trader intelligence platform
+✅ behavioral analytics engine
+✅ ML-powered insight system
+✅ interactive analytics dashboard
+
+designed with both:
+
+* technical depth
+* business understanding
+* AI engineering practices
+* visual storytelling
+
+in mind.
+
 
 
 
