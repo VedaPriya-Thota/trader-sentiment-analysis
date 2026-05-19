@@ -96,6 +96,25 @@ Contains market sentiment data.
 | Timestamp      | Epoch timestamp   |
 
 ---
+# 📥 Dataset Access
+
+The datasets are not uploaded to GitHub because:
+
+- file sizes may be large
+- repositories should remain lightweight
+- raw datasets may contain external/private data
+
+You can download the datasets here:
+
+## Google Drive Link
+
+https://drive.google.com/file/d/1IAfLZwu6rJzyWKgBToqwSmmVYU6VbjVs/view?usp=sharing
+https://drive.google.com/file/d/1PgQC0tO8XN-wqkNyghWc_-mnrYv_nhSf/view?usp=sharing
+
+After downloading, place the CSV files inside:
+
+```text
+data/raw/
 
 # 🏗️ Project Architecture
 
