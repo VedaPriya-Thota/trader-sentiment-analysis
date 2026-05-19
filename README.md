@@ -57,7 +57,7 @@ This project was built with a strong focus on:
 * modular architecture
 * reproducibility
 * structured outputs
-* recruiter-grade implementation
+
 
 ---
 
@@ -570,12 +570,6 @@ It combines:
 * 🧪 Automated Testing
 * 📂 Structured Reporting
 
-into a recruiter-grade portfolio project suitable for:
-
-* AI Engineering roles
-* Data Science internships
-* Quantitative Research internships
-* ML Engineering opportunities
 
 
 
