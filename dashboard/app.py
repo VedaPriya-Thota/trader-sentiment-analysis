@@ -619,6 +619,7 @@ sentiment_pnl = load_csv(REPORTS_DIR / "sentiment_pnl_analysis.csv")
 sentiment_behavior = load_csv(REPORTS_DIR / "sentiment_behavior_analysis.csv")
 trader_risk = load_csv(REPORTS_DIR / "trader_risk_summary.csv")
 feature_importance = load_csv(REPORTS_DIR / "feature_importance.csv")
+model_comparison = load_csv(REPORTS_DIR / "model_comparison.csv")
 drawdown_series = load_csv(REPORTS_DIR / "drawdown_series.csv")
 segmented_traders = load_csv(REPORTS_DIR / "segmented_traders.csv")
 segment_summary = load_csv(REPORTS_DIR / "trader_segment_summary.csv")
@@ -1284,6 +1285,11 @@ elif st.session_state.page == "ML Intelligence":
         "success"
     )
 
+    st.markdown(
+        f"<div class='premium-card' style='margin-top: 1rem;'><strong>Selected Best Model:</strong> {best_model}</div>",
+        unsafe_allow_html=True
+    )
+
     # 5 modern metric cards in a grid
     ml1, ml2, ml3, ml4, ml5 = st.columns(5)
     with ml1:
@@ -1296,6 +1302,40 @@ elif st.session_state.page == "ML Intelligence":
         metric_grid_card("F1 Balanced Score", f"{pct(f1)}%", "harmonic precision/recall mean")
     with ml5:
         metric_grid_card("ROC-AUC Score", f"{auc:.3f}", "probability ranking power")
+
+    st.markdown(
+        '<div class="section-title">📊 Model Benchmarking</div>',
+        unsafe_allow_html=True
+    )
+
+    if not model_comparison.empty:
+        st.dataframe(
+            model_comparison[
+                [
+                    "model",
+                    "accuracy",
+                    "precision",
+                    "recall",
+                    "f1_score",
+                    "roc_auc",
+                    "cv_roc_auc_mean",
+                    "cv_roc_auc_std"
+                ]
+            ],
+            use_container_width=True
+        )
+
+        st.bar_chart(
+            model_comparison.set_index("model")["roc_auc"]
+        )
+
+        insight_card(
+            "Why This Matters",
+            "Multiple models were benchmarked and the strongest model was selected based on ROC-AUC, making the ML workflow more reliable than using a single model by default.",
+            "info"
+        )
+    else:
+        st.warning("Model comparison report not found. Run `python main.py` first.")
 
     st.markdown(
         '<div class="section-title">📊 Cross-Validation Stability</div>',

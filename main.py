@@ -37,6 +37,7 @@ from src.models.profitability_model import train_profitability_model
 from src.models.trader_segmentation import segment_traders
 
 from src.utils.ai_summary import generate_ai_summary
+from src.utils.insights_generator import generate_structured_insights
 
 from src.visualization.plots import (
     plot_pnl_distribution,
@@ -185,7 +186,7 @@ def main():
     )
 
     # ML profitability prediction
-    model_metrics, feature_importance = train_profitability_model(
+    model_metrics, feature_importance, model_comparison_df = train_profitability_model(
         merged_df
     )
 
@@ -196,6 +197,11 @@ def main():
 
     feature_importance.to_csv(
         "outputs/reports/feature_importance.csv",
+        index=False
+    )
+
+    model_comparison_df.to_csv(
+        "outputs/reports/model_comparison.csv",
         index=False
     )
 
@@ -251,6 +257,21 @@ def main():
     save_json(
         ai_summary,
         "outputs/json/ai_executive_summary.json"
+    )
+
+    # Strict JSON insights output
+    structured_insights = generate_structured_insights(
+        pnl_info,
+        sentiment_pnl_df,
+        trader_risk_df,
+        quant_metrics,
+        model_metrics,
+        feature_importance
+    )
+
+    save_json(
+        structured_insights,
+        "outputs/json/insights.json"
     )
 
     print(

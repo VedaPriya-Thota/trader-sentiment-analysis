@@ -122,6 +122,7 @@ def train_profitability_model(df: pd.DataFrame):
     best_model = None
     best_metrics = None
     best_auc = -1
+    model_results = []
 
     cv = StratifiedKFold(
         n_splits=5,
@@ -164,6 +165,8 @@ def train_profitability_model(df: pd.DataFrame):
             )
         }
 
+        model_results.append(metrics)
+
         if metrics["roc_auc"] > best_auc:
             best_auc = metrics["roc_auc"]
             best_model_name = name
@@ -180,4 +183,9 @@ def train_profitability_model(df: pd.DataFrame):
 
     best_metrics["best_model_selected"] = best_model_name
 
-    return best_metrics, feature_importance
+    model_comparison_df = pd.DataFrame(model_results).sort_values(
+        by="roc_auc",
+        ascending=False
+    )
+
+    return best_metrics, feature_importance, model_comparison_df

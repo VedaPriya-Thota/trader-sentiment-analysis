@@ -572,6 +572,7 @@ This project demonstrates how AI-powered analytics can help:
 ✅ generate actionable trading intelligence
 
 
+
 # ⭐ Final Note
 
 This project evolved from a simple data analysis assignment into a complete:
@@ -589,8 +590,3 @@ designed with both:
 * visual storytelling
 
 in mind.
-
-
-
-
-
