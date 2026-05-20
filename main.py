@@ -34,6 +34,9 @@ from src.eda.quant_metrics import (
 )
 
 from src.models.profitability_model import train_profitability_model
+from src.models.trader_segmentation import segment_traders
+
+from src.utils.ai_summary import generate_ai_summary
 
 from src.visualization.plots import (
     plot_pnl_distribution,
@@ -221,8 +224,37 @@ def main():
         "outputs/figures/correlation_heatmap.png"
     )
 
+    # Trader segmentation
+    segmented_traders, segment_summary = segment_traders(
+        trader_risk_df
+    )
+
+    segmented_traders.to_csv(
+        "outputs/reports/segmented_traders.csv",
+        index=False
+    )
+
+    segment_summary.to_csv(
+        "outputs/reports/trader_segment_summary.csv",
+        index=False
+    )
+
+    # AI executive summary
+    ai_summary = generate_ai_summary(
+        pnl_info,
+        sentiment_pnl_df,
+        trader_risk_df,
+        quant_metrics,
+        model_metrics
+    )
+
+    save_json(
+        ai_summary,
+        "outputs/json/ai_executive_summary.json"
+    )
+
     print(
-        "Full analysis + ML + quant pipeline completed successfully."
+        "Full AI trader intelligence pipeline completed successfully."
     )
 
 

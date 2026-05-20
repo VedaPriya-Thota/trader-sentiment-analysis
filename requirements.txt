@@ -8,3 +8,5 @@ pyyaml
 python-dotenv
 pytest
 streamlit
+xgboost
+shap
