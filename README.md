@@ -27,14 +27,12 @@ This project merges the **Bitcoin Fear & Greed Index** with **Hyperliquid on-cha
 
 | # | Finding |
 |---|---------|
-| 1 | Traders during **Extreme Fear** periods averaged **+$[X]** PnL vs **-$[X]** during Extreme Greed — consistent with contrarian trading advantage |
-| 2 | **Win rate drops [X]%** during Greed regimes, suggesting overconfidence-driven entries |
-| 3 | Average **leverage increases [X]x** during Extreme Greed, while drawdown risk rises proportionally |
-| 4 | The top 10% of accounts by total PnL traded **[X]% more** during Fear periods than the bottom 10% |
-| 5 | **[X] traders** classified as extreme-risk showed negative median PnL across all sentiment regimes |
-| 6 | RandomForest outperforms majority-class baseline by **+17.57% accuracy** and **+0.312 ROC-AUC** |
-
-> **Replace `[X]` values** by running `python analyze.py --export` — results save to `outputs/json/insights.json`
+| 1 | Traders during **Greed** periods averaged **+$87.89** PnL, making it the strongest profitability sentiment regime in the dataset |
+| 2 | Overall trader **win rate was 41.13%**, showing that profitability depended more on risk-reward efficiency than raw win frequency |
+| 3 | The platform detected **5 extreme-risk traders**, indicating concentrated exposure and elevated downside behavior |
+| 4 | The system achieved a **Profit Factor of 4.49** despite a **maximum drawdown of -522,870**, highlighting strong profitability with significant downside volatility |
+| 5 | RandomForestClassifier achieved **71.57% accuracy** and **0.812 ROC-AUC** after leakage prevention and cross-validation |
+| 6 | Trade behavior variables such as **is_buy**, **fee_ratio**, and **trade cost metrics** were stronger predictors than raw sentiment labels |
 
 ---
 
@@ -70,11 +68,25 @@ This project merges the **Bitcoin Fear & Greed Index** with **Hyperliquid on-cha
 
 ### Top Predictive Features *(replace with your actual SHAP/importance output)*
 ```
-1. sentiment_score         — importance: 0.XX
-2. fee_ratio               — importance: 0.XX
-3. trade_hour              — importance: 0.XX
-4. leverage                — importance: 0.XX
-5. risk_score              — importance: 0.XX
+## Top Predictive Features
+
+```text
+1. is_buy                   — importance: 0.310
+2. fee_ratio                — importance: 0.309
+3. fee                      — importance: 0.168
+4. size_usd                 — importance: 0.148
+5. value                    — importance: 0.024
+6. hour                     — importance: 0.017
+7. classification_Neutral   — importance: 0.011
+8. classification_Fear      — importance: 0.007
+9. classification_Greed     — importance: 0.006
+```
+
+Insights:
+- Trade direction (`is_buy`) and transaction cost efficiency (`fee_ratio`) were the strongest predictors of profitability.
+- Sentiment classification features contributed less predictive power compared to direct trade behavior metrics.
+- Trading behavior features were more informative than raw sentiment labels alone.
+```
 ```
 
 ### Data Leakage Prevention
