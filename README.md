@@ -3,14 +3,18 @@
 
 <div align="center">
 
-![Python](https://img.shields.io/badge/Python-3.11-blue?style=for-the-badge&logo=python)
-![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-red?style=for-the-badge&logo=streamlit)
-![Machine Learning](https://img.shields.io/badge/Machine-Learning-green?style=for-the-badge&logo=scikitlearn)
-![Random Forest](https://img.shields.io/badge/Best_Model-RandomForest-success?style=for-the-badge)
-![ROC-AUC](https://img.shields.io/badge/ROC--AUC-0.812-orange?style=for-the-badge)
-![Tests](https://img.shields.io/badge/Tests-Passing-brightgreen?style=for-the-badge)
+<img src="https://img.shields.io/badge/Python-3.11-blue.svg?style=for-the-badge&logo=python" />
+<img src="https://img.shields.io/badge/Streamlit-Dashboard-red.svg?style=for-the-badge&logo=streamlit" />
+<img src="https://img.shields.io/badge/Machine_Learning-scikit--learn-green.svg?style=for-the-badge&logo=scikitlearn" />
+<img src="https://img.shields.io/badge/Best_Model-RandomForest-success.svg?style=for-the-badge" />
+<img src="https://img.shields.io/badge/ROC--AUC-0.812-orange.svg?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Tests-Passing-brightgreen.svg?style=for-the-badge" />
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Streamlit_Cloud-purple?style=for-the-badge)](YOUR_STREAMLIT_LINK_HERE)
+<br><br>
+
+<a href="YOUR_STREAMLIT_LINK_HERE">
+  <img src="https://img.shields.io/badge/Live_Demo-Streamlit_Cloud-purple.svg?style=for-the-badge" />
+</a>
 
 </div>
 
