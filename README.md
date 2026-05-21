@@ -197,7 +197,45 @@ streamlit run dashboard/app.py
 Or use the **[Live Demo](YOUR_STREAMLIT_LINK_HERE)** link above.
 
 ---
+## Dashboard Preview
 
+Modern analytics dashboard built with Streamlit.
+
+![Dashboard Home](assets/dashboard-home.png)
+
+---
+
+## ML Intelligence Dashboard
+
+Model evaluation dashboard showing classification performance,
+cross-validation stability, and predictive analytics.
+
+![ML Dashboard](assets/ml-dashboard.png)
+
+---
+
+## Quant Metrics
+
+Risk-adjusted performance metrics including Sharpe-like ratio,
+drawdown analysis, and profit factor.
+
+![Quant Metrics](assets/quant-metrics.png)
+
+---
+
+## Trader Segmentation
+
+K-Means clustering used to identify behavioral trading personas.
+
+![Trader Segmentation](assets/trader-segmentation.png)
+
+---
+
+## AI Executive Summary
+
+Human-readable business insights automatically generated from the analysis pipeline.
+
+![Executive Summary](assets/executive-summary.png)
 ## Setup
 
 **4 steps. No magic.**
