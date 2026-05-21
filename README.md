@@ -193,7 +193,7 @@ Home → Executive Summary → Trading Analytics → Sentiment Intelligence
 ```bash
 streamlit run dashboard/app.py
 ```
-Or use the **[Live Demo](YOUR_STREAMLIT_LINK_HERE)** link above.
+Or use the **[Live Demo](https://drive.google.com/file/d/1jsB6pq6HTOQduVa9kNOtk-09JU2-nOU1/view?usp=sharing)** · link above.
 
 ---
 ## Dashboard Preview
