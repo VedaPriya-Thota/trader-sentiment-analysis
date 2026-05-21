@@ -67,8 +67,8 @@ This project merges the **Bitcoin Fear & Greed Index** with **Hyperliquid on-cha
 - High recall (79.55%) means the model catches most profitable trades — useful for a screening signal
 
 ### Top Predictive Features *(replace with your actual SHAP/importance output)*
-```
-## Top Predictive Features
+````markdown
+### Top Predictive Features
 
 ```text
 1. is_buy                   — importance: 0.310
@@ -82,12 +82,11 @@ This project merges the **Bitcoin Fear & Greed Index** with **Hyperliquid on-cha
 9. classification_Greed     — importance: 0.006
 ```
 
-Insights:
+**Insights:**
 - Trade direction (`is_buy`) and transaction cost efficiency (`fee_ratio`) were the strongest predictors of profitability.
 - Sentiment classification features contributed less predictive power compared to direct trade behavior metrics.
 - Trading behavior features were more informative than raw sentiment labels alone.
-```
-```
+````
 
 ### Data Leakage Prevention
 The pipeline explicitly excludes `closedPnL` and all derived PnL features from training inputs.  
@@ -308,18 +307,7 @@ trader-sentiment-analysis/
 ---
 
 ## What I Would Do Next
-<<<<<<< HEAD
 
 1. **SHAP explainability** — add local prediction explanations so each trade decision can be interpreted, not just predicted
 2. **Time-series validation** — replace random train/test split with walk-forward validation to better simulate real trading conditions
-3. **FastAPI deployment** — expose the inference pipeline as a REST endpoint so the model can serve predictions on live trade data
-=======
-
-1. **SHAP explainability** — add local prediction explanations so each trade decision can be interpreted, not just predicted
-2. **Time-series validation** — replace random train/test split with walk-forward validation to better simulate real trading conditions
-3. **FastAPI deployment** — expose the inference pipeline as a REST endpoint so the model can serve predictions on live trade data
-
-
->>>>>>> f6486b2 (Updated README and added dashboard screenshots)
-
-
+3. **FastAPI deployment** — expose the inference pipeline as a REST endpoint so the model can serve predictions on live trade data.
