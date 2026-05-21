@@ -308,9 +308,18 @@ trader-sentiment-analysis/
 ---
 
 ## What I Would Do Next
+<<<<<<< HEAD
 
 1. **SHAP explainability** — add local prediction explanations so each trade decision can be interpreted, not just predicted
 2. **Time-series validation** — replace random train/test split with walk-forward validation to better simulate real trading conditions
 3. **FastAPI deployment** — expose the inference pipeline as a REST endpoint so the model can serve predictions on live trade data
+=======
+
+1. **SHAP explainability** — add local prediction explanations so each trade decision can be interpreted, not just predicted
+2. **Time-series validation** — replace random train/test split with walk-forward validation to better simulate real trading conditions
+3. **FastAPI deployment** — expose the inference pipeline as a REST endpoint so the model can serve predictions on live trade data
+
+
+>>>>>>> f6486b2 (Updated README and added dashboard screenshots)
 
 
